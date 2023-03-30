@@ -5,13 +5,13 @@ import java.util.Random;
 
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.Ellipse;
+import edu.macalester.graphics.GraphicsGroup;
 
-public class Ball {
+public class Ball extends GraphicsGroup{
 
     public static final double GRAVITY = -9.8;
-    public static final double BALL_RADIUS = 4;
+    public static final double BALL_RADIUS = 10;
 
-    private CanvasWindow canvas;
     private Ellipse ball;
     private double centerX;
     private double centerY;
@@ -23,8 +23,9 @@ public class Ball {
         this.centerX = centerX;
         this.centerY = centerY;
 
-        ball = new Ellipse(this.centerX, this.centerY, BALL_RADIUS * 2, BALL_RADIUS * 2);
+        ball = new Ellipse(centerX, centerY, BALL_RADIUS * 2, BALL_RADIUS * 2);
         ball.setFillColor(Color.BLACK);
+        ball.setFilled(true);
 
         Random random = new Random();
 
