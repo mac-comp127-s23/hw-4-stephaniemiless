@@ -128,4 +128,12 @@ public class BrickManager {
 
 
     }
+
+    public boolean bricksStillExist() {
+        return bricks.size() > 0;
+    }
+
+    public int getNumOfBricks() {
+        return bricks.size();
+    }
 }
