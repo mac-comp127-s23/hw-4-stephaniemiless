@@ -18,6 +18,7 @@ public class BreakoutGame {
 
     public BreakoutGame() {
         canvas = new CanvasWindow("Breakout!", CANVAS_WIDTH, CANVAS_HEIGHT);
+        //canvas.setBackground(new Color(252, 244, 221));
         manager = new BrickManager(canvas);
         //ball = new Ball(CANVAS_HEIGHT * 0.5, CANVAS_WIDTH * 0.5, 80, canvas);
         //run(); 
@@ -27,6 +28,7 @@ public class BreakoutGame {
     public Rectangle createPaddle() {
         Rectangle paddle = new Rectangle(CANVAS_WIDTH * 0.41, CANVAS_HEIGHT * 0.85, 90, 10);
         paddle.setFillColor(Color.BLACK);
+        //paddle.setFillColor(new Color(252, 244, 221));
         return paddle;
     }
 

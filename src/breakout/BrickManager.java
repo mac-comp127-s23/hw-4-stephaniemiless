@@ -6,6 +6,13 @@ import java.util.List;
 import edu.macalester.graphics.CanvasWindow;
 
 public class BrickManager {
+
+    public final Color PASTEL_RED = new Color(255, 154, 162);
+    public final Color PASTEL_PINK = new Color(255, 183, 178);
+    public final Color PASTEL_ORANGE = new Color(255, 218, 193);
+    public final Color PASTEL_GREEN = new Color(226, 240, 203);
+    public final Color PASTEL_AQUA = new Color(181, 234, 215);
+    public final Color PASTEL_PURPLE = new Color(199, 206, 234);
     
     private List<Brick> bricks;
     private CanvasWindow canvas;
@@ -15,117 +22,41 @@ public class BrickManager {
         this.canvas = canvas;
     }
 
+    public void makeBrickRows(double xCoor, double yCoor, Color color) {
+        double xCoor1 = xCoor;
+        for (int i = 0; i < 10; i++) {
+            brick = new Brick(color, xCoor1, yCoor, canvas);
+            brick.addToCanvas();
+            xCoor1 += 60;
+        }
+
+    }
+
     public void generateBricks() {
-        double xCoor1 = 1;
-        double yCoor1 = 25;
-        for (int i = 0; i < 10; i++) {
-            brick = new Brick(Color.RED, xCoor1, yCoor1, canvas);
-            brick.addToCanvas();
-            canvas.add(brick);  
-            xCoor1 += 60; 
-        }
+        
+        makeBrickRows(1, 25, PASTEL_RED);
 
-        double xCoor2 = 1;
-        double yCoor2 = 49;
-        for (int i = 0; i < 10; i++) {
-            brick = new Brick(Color.RED, xCoor2, yCoor2, canvas);
-            brick.addToCanvas();
-            canvas.add(brick); 
-            xCoor2 += 60; 
-        }
+        makeBrickRows(1, 49, PASTEL_RED);
 
-        double xCoor3 = 1;
-        double yCoor3 = 73;
-        for (int i = 0; i < 10; i++) {
-            brick = new Brick(Color.ORANGE, xCoor3, yCoor3, canvas);
-            brick.addToCanvas();
-            canvas.add(brick); 
-            xCoor3 += 60; 
-        }
+        makeBrickRows(1, 73, PASTEL_PINK);
 
-        double xCoor4 = 1;
-        double yCoor4 = 97;
-        for (int i = 0; i < 10; i++) {
-            brick = new Brick(Color.ORANGE, xCoor4, yCoor4, canvas);
-            brick.addToCanvas();
-            canvas.add(brick); 
-            xCoor4 += 60; 
-        }
+        makeBrickRows(1, 97, PASTEL_PINK);
 
-        double xCoor5 = 1;
-        double yCoor5 = 121;
-        for (int i = 0; i < 10; i++) {
-            brick = new Brick(Color.YELLOW, xCoor5, yCoor5, canvas);
-            brick.addToCanvas();
-            canvas.add(brick); 
-            xCoor5 += 60; 
-        }
+        makeBrickRows(1, 121, PASTEL_ORANGE);
 
-        double xCoor6 = 1;
-        double yCoor6 = 145;
-        for (int i = 0; i < 10; i++) {
-            brick = new Brick(Color.YELLOW, xCoor6, yCoor6, canvas);
-            brick.addToCanvas();
-            canvas.add(brick); 
-            xCoor6 += 60; 
-        }
+        makeBrickRows(1, 145, PASTEL_ORANGE);
 
-        double xCoor7 = 1;
-        double yCoor7 = 169;
-        for (int i = 0; i < 10; i++) {
-            brick = new Brick(Color.GREEN, xCoor7, yCoor7, canvas);
-            brick.addToCanvas();
-            canvas.add(brick); 
-            xCoor7 += 60; 
-        }
+        makeBrickRows(1, 169, PASTEL_GREEN);
 
-        double xCoor8 = 1;
-        double yCoor8 = 193;
-        for (int i = 0; i < 10; i++) {
-            brick = new Brick(Color.GREEN, xCoor8, yCoor8, canvas);
-            brick.addToCanvas();
-            canvas.add(brick); 
-            xCoor8 += 60; 
-        }
+        makeBrickRows(1, 193, PASTEL_GREEN);
 
-        double xCoor9 = 1;
-        double yCoor9 = 217;
-        for (int i = 0; i < 10; i++) {
-            brick = new Brick(Color.BLUE, xCoor9, yCoor9, canvas);
-            brick.addToCanvas();
-            canvas.add(brick); 
-            xCoor9 += 60; 
-        }
+        makeBrickRows(1, 217, PASTEL_AQUA);
 
-        double xCoor10 = 1;
-        double yCoor10 = 241;
-        for (int i = 0; i < 10; i++) {
-            brick = new Brick(Color.BLUE, xCoor10, yCoor10, canvas);
-            brick.addToCanvas();
-            canvas.add(brick); 
-            xCoor10 += 60; 
-        }
+        makeBrickRows(1, 241, PASTEL_AQUA);
 
-        double xCoor11 = 1;
-        double yCoor11 = 265;
-        for (int i = 0; i < 10; i++) {
-            Color purple = new Color(119, 0, 200);
-            brick = new Brick(purple, xCoor11, yCoor11, canvas);
-            brick.addToCanvas();
-            canvas.add(brick); 
-            xCoor11 += 60; 
-        }
+        makeBrickRows(1, 265, PASTEL_PURPLE);
 
-        double xCoor12 = 1;
-        double yCoor12 = 289;
-        for (int i = 0; i < 10; i++) {
-            Color purple = new Color(119, 0, 200);
-            brick = new Brick(purple, xCoor12, yCoor12, canvas);
-            brick.addToCanvas();
-            canvas.add(brick); 
-            xCoor12 += 60; 
-        }
-
+        makeBrickRows(1, 289, PASTEL_PURPLE);
 
     }
 

@@ -41,18 +41,11 @@ public class Ball extends GraphicsGroup{
         this.bottomRightY = this.topLeftY + (2 * BALL_RADIUS);
 
         Random random = new Random();
-        this.dx = random.nextDouble(1.0, 3.0);
+        this.dx = random.nextDouble(1.0, 5.0);
         if (random.nextBoolean()) {
             this.dx = -this.dx;
         }
-        this.dy = 4.0;
-
-        // double initialAngle = random.nextDouble(180);
-        
-
-        // double initialAngleRadians = Math.toRadians(initialAngle);
-        // this.currentSpeedX = initialSpeed * Math.cos(initialAngleRadians); 
-        // this.currentSpeedY = initialSpeed * -Math.sin(initialAngleRadians);
+        this.dy = 5.0;
     }
 
     public void moveBall(double dt, CanvasWindow canvas) {
@@ -75,8 +68,7 @@ public class Ball extends GraphicsGroup{
         if (topLeftY -dy <= 0 && dy < 0|| bottomLeftY + dy >= canvas.getHeight() && dy > 0) {
             dy = -dy;
         }
-    }    
-
+    } 
 
     public double getBottomLeftY() {
         return this.bottomLeftY;
