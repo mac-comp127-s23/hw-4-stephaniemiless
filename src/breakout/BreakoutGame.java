@@ -18,32 +18,29 @@ public class BreakoutGame {
 
     public BreakoutGame() {
         canvas = new CanvasWindow("Breakout!", CANVAS_WIDTH, CANVAS_HEIGHT);
-        //canvas.setBackground(new Color(252, 244, 221));
         manager = new BrickManager(canvas);
-        //ball = new Ball(CANVAS_HEIGHT * 0.5, CANVAS_WIDTH * 0.5, 80, canvas);
-        //run(); 
 
     }
 
     public Rectangle createPaddle() {
         Rectangle paddle = new Rectangle(CANVAS_WIDTH * 0.41, CANVAS_HEIGHT * 0.85, 90, 10);
         paddle.setFillColor(Color.BLACK);
-        //paddle.setFillColor(new Color(252, 244, 221));
         return paddle;
     }
 
     public void run() {
+        // Paddle paddle = new Paddle(CANVAS_WIDTH * 0.41, CANVAS_HEIGHT * 0.85, 90, 10);
+        // paddle.addPaddleToCanvas(canvas);
         Rectangle paddle = createPaddle();
         canvas.add(paddle);
-        canvas.onDrag(event -> {
+        canvas.onMouseMove(event -> {
             if (event.getPosition().getX() <= CANVAS_WIDTH) {
                 paddle.setX(event.getPosition().getX());
             }});
-     
+
         ball = new Ball(CANVAS_WIDTH * 0.47, CANVAS_HEIGHT * 0.5, 80);
         ball.addToCanvas(canvas);
-        canvas.animate(() -> ball.moveBall(0.1, canvas));
-
+        canvas.animate(() -> ball.moveBall(0.1, canvas, paddle, manager));
         
     }
 
