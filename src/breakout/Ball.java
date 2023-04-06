@@ -51,6 +51,15 @@ public class Ball extends GraphicsGroup{
     }
 
     public void moveBall(double dt, CanvasWindow canvas, Rectangle paddle, BrickManager manager) {
+
+        ball.moveBy(dx, dy);
+        if (this.topLeftX - dx <= 0 && dx < 0  || this.topRightX  + dx >= canvas.getWidth() && dx > 0) {
+            dx = -dx;
+        }
+        if (this.topLeftY -dy <= 0 && dy < 0|| this.bottomLeftY + dy >= canvas.getHeight() && dy > 0) {
+            dy = -dy;
+        }
+
         topLeftX = ball.getX();
         topLeftY = ball.getY();
 
@@ -62,51 +71,31 @@ public class Ball extends GraphicsGroup{
 
         bottomRightX = topLeftX + (2 * BALL_RADIUS);
         bottomRightY = topLeftY + (2 * BALL_RADIUS);
-
-        ball.moveBy(dx, dy);
-        if (this.topLeftX - dx <= 0 && dx < 0  || this.topRightX  + dx >= canvas.getWidth() && dx > 0) {
-            dx = -dx;
-        }
-        if (this.topLeftY -dy <= 0 && dy < 0|| this.bottomLeftY + dy >= canvas.getHeight() && dy > 0) {
-            dy = -dy;
-        }
+        
 
         if (getObjectHit(canvas) == paddle) {
             if (dy > 0) {
                 dy = -dy;
             }
         } 
-        // else {
-        //     if (getObjectHit(canvas) != null) {
-        //         canvas.remove(getObjectHit(canvas));
-        //     }
-        // }
-        // if (getObjectHit(canvas) != null) {
-        //     System.out.println(getObjectHit(canvas));
-        //     for (Brick brick: manager.getBrickList()) {
-        //         if (getObjectHit(canvas) != paddle) {
-    
-        //             brick.removeFromCanvas();
-        //             //canvas.remove(brick);
-        //             manager.removeBrickFromList(brick);
-        //         }
-        //     }
-            
-        // } 
-        //
-        
+        else {
+            if (getObjectHit(canvas) != null) {
+                canvas.remove(getObjectHit(canvas));
+                dy = - dy;
+            }
+        }
     }
 
 
     public GraphicsObject getObjectHit(CanvasWindow canvas) {
-        if (canvas.getElementAt(this.bottomLeftX, this.bottomLeftY + 0.1) != null) {
-            return canvas.getElementAt(this.bottomLeftX, this.bottomLeftY + 0.1);
-        } else if (canvas.getElementAt(this.bottomRightX, this.bottomRightY + 0.1) != null) {
-            return canvas.getElementAt(this.bottomRightX, this.bottomRightY + 0.1);
-        } else if (canvas.getElementAt(this.topLeftX, this.topLeftY - 0.1) != null) {
-            return canvas.getElementAt(this.topLeftX, this.topLeftY - 0.1);
-        } else if (canvas.getElementAt(this.topRightX, this.topRightY - 0.1) != null) {
-            return canvas.getElementAt(this.topRightX, this.topRightY - 0.1);
+        if (canvas.getElementAt(this.bottomLeftX, this.bottomLeftY) != null) {
+            return canvas.getElementAt(this.bottomLeftX, this.bottomLeftY);
+        } else if (canvas.getElementAt(this.bottomRightX, this.bottomRightY) != null) {
+            return canvas.getElementAt(this.bottomRightX, this.bottomRightY);
+        } else if (canvas.getElementAt(this.topLeftX, this.topLeftY) != null) {
+            return canvas.getElementAt(this.topLeftX, this.topLeftY);
+        } else if (canvas.getElementAt(this.topRightX, this.topRightY) != null) {
+            return canvas.getElementAt(this.topRightX, this.topRightY);
         } 
         return null;
     }
