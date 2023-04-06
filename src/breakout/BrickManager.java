@@ -13,7 +13,7 @@ public class BrickManager {
     public final Color PASTEL_ORANGE = new Color(255, 218, 193);
     public final Color PASTEL_GREEN = new Color(226, 240, 203);
     public final Color PASTEL_AQUA = new Color(181, 234, 215);
-    public final Color PASTEL_PURPLE = new Color(199, 206, 234);
+    public final Color PASTEL_BLUE = new Color(175, 213, 240);
     
     private List<Brick> bricks;
     private CanvasWindow canvas;
@@ -28,7 +28,6 @@ public class BrickManager {
         double xCoor1 = xCoor;
         for (int i = 0; i < 10; i++) {
             brick = new Brick(color, xCoor1, yCoor, canvas);
-            System.out.println(brick);
             bricks.add(brick);
             brick.addToCanvas();
             xCoor1 += 60;
@@ -58,9 +57,9 @@ public class BrickManager {
 
         makeBrickRows(1, 241, PASTEL_AQUA);
 
-        makeBrickRows(1, 265, PASTEL_PURPLE);
+        makeBrickRows(1, 265, PASTEL_BLUE);
 
-        makeBrickRows(1, 289, PASTEL_PURPLE);
+        makeBrickRows(1, 289, PASTEL_BLUE);
 
     }
 

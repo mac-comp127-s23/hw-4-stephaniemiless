@@ -11,6 +11,8 @@ import edu.macalester.graphics.Rectangle;
 public class BreakoutGame {
     private static final int CANVAS_WIDTH = 600;
     private static final int CANVAS_HEIGHT = 800;
+    public final Color PASTEL_PURPLE = new Color(199, 206, 234);
+
 
     private CanvasWindow canvas;
     private BrickManager manager;
@@ -18,13 +20,15 @@ public class BreakoutGame {
 
     public BreakoutGame() {
         canvas = new CanvasWindow("Breakout!", CANVAS_WIDTH, CANVAS_HEIGHT);
+        canvas.setBackground(Color.BLACK);
         manager = new BrickManager(canvas);
 
     }
 
     public Rectangle createPaddle() {
         Rectangle paddle = new Rectangle(CANVAS_WIDTH * 0.41, CANVAS_HEIGHT * 0.85, 90, 10);
-        paddle.setFillColor(Color.BLACK);
+        paddle.setFillColor(PASTEL_PURPLE);
+        paddle.setStrokeColor(PASTEL_PURPLE);
         return paddle;
     }
 

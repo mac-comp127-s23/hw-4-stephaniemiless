@@ -12,6 +12,8 @@ import edu.macalester.graphics.Rectangle;
 public class Ball extends GraphicsGroup{
 
     public static final double BALL_RADIUS = 10;
+    public final Color PASTEL_PURPLE = new Color(199, 206, 234);
+
 
     private Ellipse ball;
     private double centerX, centerY;
@@ -29,7 +31,9 @@ public class Ball extends GraphicsGroup{
         ball = new Ellipse(centerX, centerY, BALL_RADIUS * 2, BALL_RADIUS * 2);
         ball.setFilled(true);
 
-        ball.setFillColor(Color.BLACK);
+        ball.setFillColor(PASTEL_PURPLE);
+        ball.setStrokeColor(PASTEL_PURPLE);
+        
         this.topLeftX = ball.getX();
         this.topLeftY = ball.getY();
 
@@ -147,8 +151,5 @@ public class Ball extends GraphicsGroup{
     public void removeFromCanvas(CanvasWindow canvas) {
         canvas.remove(ball);
     }
-
-
-
 
 }
