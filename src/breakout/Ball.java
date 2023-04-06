@@ -23,7 +23,7 @@ public class Ball extends GraphicsGroup{
     private double bottomRightX, bottomRightY;
     private double dx, dy;
 
-    public Ball(double centerX, double centerY, double initialSpeed) {
+    public Ball(double centerX, double centerY) {
 
         this.centerX = centerX;
         this.centerY = centerY;
@@ -46,22 +46,29 @@ public class Ball extends GraphicsGroup{
         this.bottomRightX = this.topLeftX + (2 * BALL_RADIUS);
         this.bottomRightY = this.topLeftY + (2 * BALL_RADIUS);
 
+        this.dx = setDx();
+
+        this.dy = 5.0;
+
+    }
+
+    public double setDx() {
         Random random = new Random();
         this.dx = random.nextDouble(1.0, 5.0);
         if (random.nextBoolean()) {
             this.dx = -this.dx;
         }
-        this.dy = 5.0;
-        
+        return this.dx;
     }
 
     public void moveBall(double dt, CanvasWindow canvas, Rectangle paddle, BrickManager manager) {
+        System.out.println(dy);
 
         ball.moveBy(dx, dy);
         if (this.topLeftX - dx <= 0 && dx < 0  || this.topRightX  + dx >= canvas.getWidth() && dx > 0) {
             dx = -dx;
         }
-        if (this.topLeftY -dy <= 0 && dy < 0|| this.bottomLeftY + dy >= canvas.getHeight() && dy > 0) {
+        if (this.topLeftY - dy <= 0 && dy < 0) {
             dy = -dy;
         }
 
@@ -87,11 +94,10 @@ public class Ball extends GraphicsGroup{
             if (getObjectHit(canvas) != null) {
                 canvas.remove(getObjectHit(canvas));
                 manager.removeBrickFromCount();
-                dy = - dy;
+                dy = -dy;
             }
         }
     }
-
 
     public GraphicsObject getObjectHit(CanvasWindow canvas) {
         if (canvas.getElementAt(this.bottomLeftX, this.bottomLeftY) != null) {
@@ -152,6 +158,12 @@ public class Ball extends GraphicsGroup{
 
     public void removeFromCanvas(CanvasWindow canvas) {
         canvas.remove(ball);
+    }
+
+    public void resetBall(double x, double y, double dx1, double dy1) {
+        ball.setCenter(x, y);
+        dx = dx1;
+        dy = dy1;
     }
 
 }

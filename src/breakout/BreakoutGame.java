@@ -20,18 +20,21 @@ public class BreakoutGame {
     private Ball ball;
     private GraphicsText winningText;
     private GraphicsText losingText;
+    private int lifeCount = 3;
 
     public BreakoutGame() {
         canvas = new CanvasWindow("Breakout!", CANVAS_WIDTH, CANVAS_HEIGHT);
 
         winningText = new GraphicsText();
-        winningText.setText("CONGRATS!!");
-        winningText.setFont(FontStyle.BOLD, 50);
-        winningText.setCenter(CANVAS_WIDTH * 0.5, CANVAS_HEIGHT * 0.5);
+        winningText.setText("GAME WON!");
+        winningText.setFont(FontStyle.BOLD_ITALIC, 50);
+        winningText.setCenter(CANVAS_WIDTH * 0.47, CANVAS_HEIGHT * 0.65);
         winningText.setFillColor(Color.WHITE);
 
         losingText = new GraphicsText();
         losingText.setText("GAME OVER");
+        losingText.setFont(FontStyle.BOLD_ITALIC, 50);
+        losingText.setCenter(CANVAS_WIDTH * 0.47, CANVAS_HEIGHT * 0.65);
         losingText.setFillColor(Color.WHITE);
 
         canvas.setBackground(Color.BLACK);
@@ -54,25 +57,32 @@ public class BreakoutGame {
                 paddle.setX(event.getPosition().getX());
             }});
 
-        ball = new Ball(CANVAS_WIDTH * 0.47, CANVAS_HEIGHT * 0.5, 80);
+        ball = new Ball(CANVAS_WIDTH * 0.48, CANVAS_HEIGHT * 0.5);
         ball.addToCanvas(canvas);
 
         canvas.draw();
-            canvas.pause(3000);
-            canvas.animate(() -> {
-                ball.moveBall(0.1, canvas, paddle, manager);
-            });
-
-        // while (ball.getBottomLeftY() > 0 && ball.getBottomRightY() > 0) {
-        //     System.out.println("here");
-        //     canvas.draw();
-        //     canvas.pause(3000);
-        //     canvas.animate(() -> {
-        //         ball.moveBall(0.1, canvas, paddle, manager);
-        //     });
-        // }
-
-        
+        canvas.pause(3000);
+        canvas.animate(() -> {
+            if (lifeCount > 0 && manager.bricksStillExist()) {
+                if (ball.getBottomLeftY() < CANVAS_HEIGHT) {
+                    ball.moveBall(0.1, canvas, paddle, manager);
+                } else {
+                    ball.resetBall(CANVAS_WIDTH * 0.47, CANVAS_HEIGHT * 0.5, ball.setDx(), 5);
+                    canvas.draw();
+                    canvas.pause(3000);
+                    ball.moveBall(0.1, canvas, paddle, manager);
+                    lifeCount -= 1;
+                }
+            } else if (lifeCount == 0) {
+                canvas.add(losingText);
+                canvas.draw();
+            } else if (!manager.bricksStillExist()) {
+                canvas.add(winningText);
+                canvas.draw();
+            }
+            
+            
+        });
         
     }
 
