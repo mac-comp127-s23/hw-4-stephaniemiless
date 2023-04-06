@@ -52,6 +52,7 @@ public class Ball extends GraphicsGroup{
             this.dx = -this.dx;
         }
         this.dy = 5.0;
+        
     }
 
     public void moveBall(double dt, CanvasWindow canvas, Rectangle paddle, BrickManager manager) {
