@@ -15,20 +15,18 @@ public class BrickManager {
     public final Color PASTEL_AQUA = new Color(181, 234, 215);
     public final Color PASTEL_BLUE = new Color(175, 213, 240);
     
-    private List<Brick> bricks;
+    private int brickCount = 120;
     private CanvasWindow canvas;
     private Brick brick;
 
     public BrickManager(CanvasWindow canvas) {
-        bricks = new ArrayList<>();
         this.canvas = canvas;
     }
 
-    public void makeBrickRows(double xCoor, double yCoor, Color color) {
+    public void makeBrickRow(double xCoor, double yCoor, Color color) {
         double xCoor1 = xCoor;
         for (int i = 0; i < 10; i++) {
             brick = new Brick(color, xCoor1, yCoor, canvas);
-            bricks.add(brick);
             brick.addToCanvas();
             xCoor1 += 60;
         }
@@ -37,47 +35,41 @@ public class BrickManager {
 
     public void generateBricks() {
         
-        makeBrickRows(1, 25, PASTEL_RED);
+        makeBrickRow(1, 25, PASTEL_RED);
 
-        makeBrickRows(1, 49, PASTEL_RED);
+        makeBrickRow(1, 49, PASTEL_RED);
 
-        makeBrickRows(1, 73, PASTEL_PINK);
+        makeBrickRow(1, 73, PASTEL_PINK);
 
-        makeBrickRows(1, 97, PASTEL_PINK);
+        makeBrickRow(1, 97, PASTEL_PINK);
 
-        makeBrickRows(1, 121, PASTEL_ORANGE);
+        makeBrickRow(1, 121, PASTEL_ORANGE);
 
-        makeBrickRows(1, 145, PASTEL_ORANGE);
+        makeBrickRow(1, 145, PASTEL_ORANGE);
 
-        makeBrickRows(1, 169, PASTEL_GREEN);
+        makeBrickRow(1, 169, PASTEL_GREEN);
 
-        makeBrickRows(1, 193, PASTEL_GREEN);
+        makeBrickRow(1, 193, PASTEL_GREEN);
 
-        makeBrickRows(1, 217, PASTEL_AQUA);
+        makeBrickRow(1, 217, PASTEL_AQUA);
 
-        makeBrickRows(1, 241, PASTEL_AQUA);
+        makeBrickRow(1, 241, PASTEL_AQUA);
 
-        makeBrickRows(1, 265, PASTEL_BLUE);
+        makeBrickRow(1, 265, PASTEL_BLUE);
 
-        makeBrickRows(1, 289, PASTEL_BLUE);
+        makeBrickRow(1, 289, PASTEL_BLUE);
 
     }
 
     public boolean bricksStillExist() {
-        return bricks.size() > 0;
+        return brickCount > 0;
     }
 
     public int getNumOfBricks() {
-        return bricks.size();
+        return brickCount;
     }
 
-    public List<Brick> getBrickList() {
-        return this.bricks;
-    }
-
-    public void removeBrickFromList(Brick brick) {
-        if (bricks.contains(brick)) {
-            bricks.remove(brick);
-        }
+    public void removeBrickFromCount() {
+        brickCount -= 1;
     }
 }

@@ -13,7 +13,6 @@ public class BreakoutGame {
     private static final int CANVAS_HEIGHT = 800;
     public final Color PASTEL_PURPLE = new Color(199, 206, 234);
 
-
     private CanvasWindow canvas;
     private BrickManager manager;
     private Ball ball;
@@ -42,6 +41,10 @@ public class BreakoutGame {
 
         ball = new Ball(CANVAS_WIDTH * 0.47, CANVAS_HEIGHT * 0.5, 80);
         ball.addToCanvas(canvas);
+        
+        canvas.draw();
+        canvas.pause(3000);
+
         canvas.animate(() -> {
             ball.moveBall(0.1, canvas, paddle, manager);
         });

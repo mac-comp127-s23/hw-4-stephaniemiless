@@ -33,7 +33,7 @@ public class Ball extends GraphicsGroup{
 
         ball.setFillColor(PASTEL_PURPLE);
         ball.setStrokeColor(PASTEL_PURPLE);
-        
+
         this.topLeftX = ball.getX();
         this.topLeftY = ball.getY();
 
@@ -85,6 +85,7 @@ public class Ball extends GraphicsGroup{
         else {
             if (getObjectHit(canvas) != null) {
                 canvas.remove(getObjectHit(canvas));
+                manager.removeBrickFromCount();
                 dy = - dy;
             }
         }
