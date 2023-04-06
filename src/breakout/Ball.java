@@ -62,7 +62,6 @@ public class Ball extends GraphicsGroup{
     }
 
     public void moveBall(double dt, CanvasWindow canvas, Rectangle paddle, BrickManager manager) {
-        System.out.println(dy);
 
         ball.moveBy(dx, dy);
         if (this.topLeftX - dx <= 0 && dx < 0  || this.topRightX  + dx >= canvas.getWidth() && dx > 0) {
@@ -112,6 +111,20 @@ public class Ball extends GraphicsGroup{
         return null;
     }
 
+    public void addToCanvas(CanvasWindow canvas) {
+        canvas.add(ball);
+    }
+
+    public void removeFromCanvas(CanvasWindow canvas) {
+        canvas.remove(ball);
+    }
+
+    public void resetBall(double x, double y, double dx1, double dy1) {
+        ball.setCenter(x, y);
+        dx = dx1;
+        dy = dy1;
+    }
+
     public double getBottomLeftY() {
         return this.bottomLeftY;
     }
@@ -150,20 +163,6 @@ public class Ball extends GraphicsGroup{
 
     public double getCenterY() {
         return this.centerY;
-    }
-
-    public void addToCanvas(CanvasWindow canvas) {
-        canvas.add(ball);
-    }
-
-    public void removeFromCanvas(CanvasWindow canvas) {
-        canvas.remove(ball);
-    }
-
-    public void resetBall(double x, double y, double dx1, double dy1) {
-        ball.setCenter(x, y);
-        dx = dx1;
-        dy = dy1;
     }
 
 }

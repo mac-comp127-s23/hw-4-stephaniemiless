@@ -62,11 +62,7 @@ public class BrickManager {
     public boolean bricksStillExist() {
         return brickCount > 0;
     }
-
-    public int getNumOfBricks() {
-        return brickCount;
-    }
-
+    
     public void removeBrickFromCount() {
         brickCount -= 1;
     }

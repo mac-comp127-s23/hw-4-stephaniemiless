@@ -21,9 +21,11 @@ public class BreakoutGame {
     private GraphicsText winningText;
     private GraphicsText losingText;
     private int lifeCount = 3;
+   
 
     public BreakoutGame() {
         canvas = new CanvasWindow("Breakout!", CANVAS_WIDTH, CANVAS_HEIGHT);
+        canvas.setBackground(Color.BLACK);
 
         winningText = new GraphicsText();
         winningText.setText("GAME WON!");
@@ -37,13 +39,12 @@ public class BreakoutGame {
         losingText.setCenter(CANVAS_WIDTH * 0.47, CANVAS_HEIGHT * 0.65);
         losingText.setFillColor(Color.WHITE);
 
-        canvas.setBackground(Color.BLACK);
         manager = new BrickManager(canvas);
 
     }
 
     public Rectangle createPaddle() {
-        Rectangle paddle = new Rectangle(CANVAS_WIDTH * 0.41, CANVAS_HEIGHT * 0.85, 90, 10);
+        Rectangle paddle = new Rectangle(CANVAS_WIDTH * 0.38, CANVAS_HEIGHT * 0.85, 120, 10);
         paddle.setFillColor(PASTEL_PURPLE);
         paddle.setStrokeColor(PASTEL_PURPLE);
         return paddle;
@@ -80,10 +81,7 @@ public class BreakoutGame {
                 canvas.add(winningText);
                 canvas.draw();
             }
-            
-            
-        });
-        
+        });  
     }
 
     public void resetGame() {
@@ -93,7 +91,6 @@ public class BreakoutGame {
     public static void main(String[] args){
         BreakoutGame game = new BreakoutGame();
         game.resetGame();
-        game.run();
-        
+        game.run();   
     }
 }
