@@ -29,8 +29,6 @@ public class BreakoutGame {
     }
 
     public void run() {
-        // Paddle paddle = new Paddle(CANVAS_WIDTH * 0.41, CANVAS_HEIGHT * 0.85, 90, 10);
-        // paddle.addPaddleToCanvas(canvas);
         Rectangle paddle = createPaddle();
         canvas.add(paddle);
         canvas.onMouseMove(event -> {
@@ -40,7 +38,9 @@ public class BreakoutGame {
 
         ball = new Ball(CANVAS_WIDTH * 0.47, CANVAS_HEIGHT * 0.5, 80);
         ball.addToCanvas(canvas);
-        canvas.animate(() -> ball.moveBall(0.1, canvas, paddle, manager));
+        canvas.animate(() -> {
+            ball.moveBall(0.1, canvas, paddle, manager);
+        });
         
     }
 
@@ -52,6 +52,6 @@ public class BreakoutGame {
         BreakoutGame game = new BreakoutGame();
         game.resetGame();
         game.run();
-
+        
     }
 }

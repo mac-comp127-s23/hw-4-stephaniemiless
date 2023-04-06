@@ -3,11 +3,10 @@ package breakout;
 import java.awt.Color;
 
 import edu.macalester.graphics.CanvasWindow;
-import edu.macalester.graphics.GraphicsGroup;
 import edu.macalester.graphics.Point;
 import edu.macalester.graphics.Rectangle;
 
-public class Brick extends GraphicsGroup {
+public class Brick {
 
     private Rectangle brick;
     private double centerX;
@@ -17,6 +16,7 @@ public class Brick extends GraphicsGroup {
     public Brick(Color color, double xCoor, double yCoor, CanvasWindow canvas) {
 
         brick = new Rectangle(xCoor, yCoor, 58, 20);
+        //super(xCoor, yCoor, 58, 20);
         brick.setFillColor(color);
         brick.setStrokeColor(color);
 
@@ -44,5 +44,9 @@ public class Brick extends GraphicsGroup {
 
     public void addToCanvas() {
         canvas.add(brick);
+    }
+
+    public void removeFromCanvas() {
+        canvas.remove(brick);
     }
 }

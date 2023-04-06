@@ -1,6 +1,7 @@
 package breakout;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.macalester.graphics.CanvasWindow;
@@ -19,6 +20,7 @@ public class BrickManager {
     private Brick brick;
 
     public BrickManager(CanvasWindow canvas) {
+        bricks = new ArrayList<>();
         this.canvas = canvas;
     }
 
@@ -26,6 +28,8 @@ public class BrickManager {
         double xCoor1 = xCoor;
         for (int i = 0; i < 10; i++) {
             brick = new Brick(color, xCoor1, yCoor, canvas);
+            System.out.println(brick);
+            bricks.add(brick);
             brick.addToCanvas();
             xCoor1 += 60;
         }
@@ -66,5 +70,15 @@ public class BrickManager {
 
     public int getNumOfBricks() {
         return bricks.size();
+    }
+
+    public List<Brick> getBrickList() {
+        return this.bricks;
+    }
+
+    public void removeBrickFromList(Brick brick) {
+        if (bricks.contains(brick)) {
+            bricks.remove(brick);
+        }
     }
 }

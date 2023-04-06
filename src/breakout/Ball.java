@@ -19,10 +19,6 @@ public class Ball extends GraphicsGroup{
     private double topRightX, topRightY;
     private double bottomLeftX, bottomLeftY;
     private double bottomRightX, bottomRightY;
-    private double centerTopX, centerBottomX;
-    private double centerTopY, centerBottomY;
-    private double leftCenterX, rightCenterX;
-    private double leftCenterY, rightCenterY;
     private double dx, dy;
 
     public Ball(double centerX, double centerY, double initialSpeed) {
@@ -46,18 +42,6 @@ public class Ball extends GraphicsGroup{
         this.bottomRightX = this.topLeftX + (2 * BALL_RADIUS);
         this.bottomRightY = this.topLeftY + (2 * BALL_RADIUS);
 
-        // this.centerTopX = (this.topLeftX + this.topRightX) / 2;
-        // this.centerTopY =  (this.topLeftY + this.topRightY) / 2;
-
-        // this.centerBottomX = (this.bottomLeftX + this.bottomRightX) / 2;
-        // this.centerBottomY = (this.bottomLeftY + this.bottomRightY) / 2;
-
-        // this.leftCenterX = (this.topLeftX + this.bottomLeftX) / 2;
-        // this.leftCenterY = (this.topLeftY + this.bottomLeftY) / 2;
-
-        // this.rightCenterX = (this.topRightX + this.bottomRightX) / 2;
-        // this.rightCenterY = (this.topRightY + this.bottomRightY) / 2;
-
         Random random = new Random();
         this.dx = random.nextDouble(1.0, 5.0);
         if (random.nextBoolean()) {
@@ -71,8 +55,13 @@ public class Ball extends GraphicsGroup{
         topLeftY = ball.getY();
 
         topRightX = topLeftX + (2 * BALL_RADIUS);
+        topRightY = topLeftY;
 
+        bottomLeftX = topLeftX;
         bottomLeftY = topLeftY + (2 * BALL_RADIUS);
+
+        bottomRightX = topLeftX + (2 * BALL_RADIUS);
+        bottomRightY = topLeftY + (2 * BALL_RADIUS);
 
         ball.moveBy(dx, dy);
         if (this.topLeftX - dx <= 0 && dx < 0  || this.topRightX  + dx >= canvas.getWidth() && dx > 0) {
@@ -86,33 +75,39 @@ public class Ball extends GraphicsGroup{
             if (dy > 0) {
                 dy = -dy;
             }
-        }
+        } 
+        // else {
+        //     if (getObjectHit(canvas) != null) {
+        //         canvas.remove(getObjectHit(canvas));
+        //     }
+        // }
+        // if (getObjectHit(canvas) != null) {
+        //     System.out.println(getObjectHit(canvas));
+        //     for (Brick brick: manager.getBrickList()) {
+        //         if (getObjectHit(canvas) != paddle) {
+    
+        //             brick.removeFromCanvas();
+        //             //canvas.remove(brick);
+        //             manager.removeBrickFromList(brick);
+        //         }
+        //     }
+            
+        // } 
+        //
         
-    } 
+    }
+
 
     public GraphicsObject getObjectHit(CanvasWindow canvas) {
-        if (canvas.getElementAt(this.bottomLeftX, this.bottomLeftY + 1) != null) {
-            return canvas.getElementAt(this.bottomLeftX, this.bottomLeftY + 1);
-        } else if (canvas.getElementAt(this.bottomRightX, this.bottomRightY + 1) != null) {
-            return canvas.getElementAt(this.bottomRightX, this.bottomRightY + 1);
-        } else if (canvas.getElementAt(this.topLeftX, this.topLeftY - 1) != null) {
-            return canvas.getElementAt(this.topLeftX, this.topLeftY - 1);
-        } else if (canvas.getElementAt(this.topRightX, this.topRightY - 1) != null) {
-            return canvas.getElementAt(this.topRightX, this.topRightY - 1);
+        if (canvas.getElementAt(this.bottomLeftX, this.bottomLeftY + 0.1) != null) {
+            return canvas.getElementAt(this.bottomLeftX, this.bottomLeftY + 0.1);
+        } else if (canvas.getElementAt(this.bottomRightX, this.bottomRightY + 0.1) != null) {
+            return canvas.getElementAt(this.bottomRightX, this.bottomRightY + 0.1);
+        } else if (canvas.getElementAt(this.topLeftX, this.topLeftY - 0.1) != null) {
+            return canvas.getElementAt(this.topLeftX, this.topLeftY - 0.1);
+        } else if (canvas.getElementAt(this.topRightX, this.topRightY - 0.1) != null) {
+            return canvas.getElementAt(this.topRightX, this.topRightY - 0.1);
         } 
-        //else if (canvas.getElementAt(this.centerTopX, this.centerTopY - 1) != null) {
-        //     System.out.println("ct");
-        //     return canvas.getElementAt(this.centerTopX, this.centerTopY - 1);
-        // } else if (canvas.getElementAt(this.centerBottomX, this.centerBottomY - 1) != null) {
-        //     System.out.println("cb");
-        //     return canvas.getElementAt(this.centerBottomX, this.centerBottomY - 1);
-        // } else if (canvas.getElementAt(this.leftCenterX, this.leftCenterY + 1) != null) {
-        //     System.out.println("lc");
-        //     return canvas.getElementAt(this.leftCenterX, this.leftCenterY + 1);
-        // } else if (canvas.getElementAt(this.rightCenterX, this.rightCenterY + 1) != null) {
-        //     System.out.println("rc");
-        //     return canvas.getElementAt(this.rightCenterX, this.rightCenterY + 1);
-        // }
         return null;
     }
 
