@@ -1,7 +1,12 @@
 package breakout;
 
-import java.awt.Color;
+/* Stephanie Miles
+ / COMP127 Spring 2023 
+ / HOMEWORK #4
+ / Due: 9 Apr 2023 11:59
+*/
 
+import java.awt.Color;
 import edu.macalester.graphics.CanvasWindow;
 
 public class BrickManager {
@@ -28,41 +33,27 @@ public class BrickManager {
             brick.addToCanvas();
             xCoor1 += 60;
         }
-
     }
 
     public void generateBricks() {
-        
         makeBrickRow(1, 25, PASTEL_RED);
-
         makeBrickRow(1, 49, PASTEL_RED);
-
         makeBrickRow(1, 73, PASTEL_PINK);
-
         makeBrickRow(1, 97, PASTEL_PINK);
-
         makeBrickRow(1, 121, PASTEL_ORANGE);
-
         makeBrickRow(1, 145, PASTEL_ORANGE);
-
         makeBrickRow(1, 169, PASTEL_GREEN);
-
         makeBrickRow(1, 193, PASTEL_GREEN);
-
         makeBrickRow(1, 217, PASTEL_AQUA);
-
         makeBrickRow(1, 241, PASTEL_AQUA);
-
         makeBrickRow(1, 265, PASTEL_BLUE);
-
         makeBrickRow(1, 289, PASTEL_BLUE);
-
     }
 
     public boolean bricksStillExist() {
         return brickCount > 0;
     }
-    
+
     public void removeBrickFromCount() {
         brickCount -= 1;
     }

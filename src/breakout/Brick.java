@@ -1,5 +1,11 @@
 package breakout;
 
+/* Stephanie Miles
+ / COMP127 Spring 2023 
+ / HOMEWORK #4
+ / Due: 9 Apr 2023 11:59
+*/
+
 import java.awt.Color;
 
 import edu.macalester.graphics.CanvasWindow;
@@ -11,11 +17,9 @@ public class Brick {
     private CanvasWindow canvas;
 
     public Brick(Color color, double xCoor, double yCoor, CanvasWindow canvas) {
-
         brick = new Rectangle(xCoor, yCoor, 58, 20);
         brick.setFillColor(color);
         brick.setStrokeColor(color);
-
         this.canvas = canvas;
     }
 

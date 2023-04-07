@@ -1,5 +1,11 @@
 package breakout;
 
+/* Stephanie Miles
+ / COMP127 Spring 2023 
+ / HOMEWORK #4
+ / Due: 9 Apr 2023 11:59
+*/
+
 import java.awt.Color;
 
 import edu.macalester.graphics.CanvasWindow;
@@ -20,6 +26,7 @@ public class BreakoutGame {
     private Ball ball;
     private GraphicsText winningText;
     private GraphicsText losingText;
+    private GraphicsText losingText2;
     private int lifeCount = 3;
    
 
@@ -34,10 +41,16 @@ public class BreakoutGame {
         winningText.setFillColor(Color.WHITE);
 
         losingText = new GraphicsText();
-        losingText.setText("GAME OVER");
+        losingText.setText("GAME OVER!");
         losingText.setFont(FontStyle.BOLD_ITALIC, 50);
         losingText.setCenter(CANVAS_WIDTH * 0.47, CANVAS_HEIGHT * 0.65);
         losingText.setFillColor(Color.WHITE);
+
+        losingText2 = new GraphicsText();
+        losingText2.setText("YOU'VE LOST ALL 3 LIVES.");
+        losingText2.setFont(FontStyle.PLAIN, 25);
+        losingText2.setCenter(CANVAS_WIDTH * 0.47, CANVAS_HEIGHT * 0.71);
+        losingText2.setFillColor(Color.WHITE);
 
         manager = new BrickManager(canvas);
 
@@ -51,11 +64,12 @@ public class BreakoutGame {
     }
 
     public void run() {
+        manager.generateBricks();
         Rectangle paddle = createPaddle();
         canvas.add(paddle);
         canvas.onMouseMove(event -> {
-            if (event.getPosition().getX() <= CANVAS_WIDTH) {
-                paddle.setX(event.getPosition().getX());
+            if (paddle.getPosition().getX() <= CANVAS_WIDTH) {
+                paddle.setCenter(event.getPosition().getX(), CANVAS_HEIGHT * 0.85);
             }});
 
         ball = new Ball(CANVAS_WIDTH * 0.48, CANVAS_HEIGHT * 0.5);
@@ -68,7 +82,7 @@ public class BreakoutGame {
                 if (ball.getBottomLeftY() < CANVAS_HEIGHT) {
                     ball.moveBall(0.1, canvas, paddle, manager);
                 } else {
-                    ball.resetBall(CANVAS_WIDTH * 0.47, CANVAS_HEIGHT * 0.5, ball.setDx(), 5);
+                    ball.resetBall(CANVAS_WIDTH * 0.48, CANVAS_HEIGHT * 0.5, ball.setDx(), 10);
                     canvas.draw();
                     canvas.pause(3000);
                     ball.moveBall(0.1, canvas, paddle, manager);
@@ -76,6 +90,7 @@ public class BreakoutGame {
                 }
             } else if (lifeCount == 0) {
                 canvas.add(losingText);
+                canvas.add(losingText2);
                 canvas.draw();
             } else if (!manager.bricksStillExist()) {
                 canvas.add(winningText);
@@ -84,13 +99,8 @@ public class BreakoutGame {
         });  
     }
 
-    public void resetGame() {
-        manager.generateBricks();
-    }
-
     public static void main(String[] args){
         BreakoutGame game = new BreakoutGame();
-        game.resetGame();
         game.run();   
     }
 }

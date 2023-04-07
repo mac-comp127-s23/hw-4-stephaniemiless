@@ -1,5 +1,11 @@
 package breakout;
 
+/* Stephanie Miles
+ / COMP127 Spring 2023 
+ / HOMEWORK #4
+ / Due: 9 Apr 2023 11:59
+*/
+
 import java.awt.Color;
 import java.util.Random;
 
@@ -13,7 +19,6 @@ public class Ball extends GraphicsGroup{
 
     public static final double BALL_RADIUS = 10;
     public final Color PASTEL_PURPLE = new Color(199, 206, 234);
-
 
     private Ellipse ball;
     private double centerX, centerY;
@@ -48,7 +53,7 @@ public class Ball extends GraphicsGroup{
 
         this.dx = setDx();
 
-        this.dy = 5.0;
+        this.dy = 10.0;
 
     }
 
