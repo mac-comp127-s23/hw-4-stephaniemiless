@@ -29,7 +29,7 @@ public class BreakoutGame {
     private GraphicsText losingText2;
     private int lifeCount = 3;
    
-
+    /** Creates a window for the Breakout game of size 600x800.  */
     public BreakoutGame() {
         canvas = new CanvasWindow("Breakout!", CANVAS_WIDTH, CANVAS_HEIGHT);
         canvas.setBackground(Color.BLACK);
@@ -56,6 +56,8 @@ public class BreakoutGame {
 
     }
 
+    /** Creates and returns a paddle using a 
+     * rectangle graphics object.*/
     public Rectangle createPaddle() {
         Rectangle paddle = new Rectangle(CANVAS_WIDTH * 0.38, CANVAS_HEIGHT * 0.85, 120, 10);
         paddle.setFillColor(PASTEL_PURPLE);
@@ -63,8 +65,14 @@ public class BreakoutGame {
         return paddle;
     }
 
+    /** Generates brick layers and moveable paddle. Contains logic
+     * to start, animate, and end the game.
+     */
     public void run() {
+
         manager.generateBricks();
+
+        //add paddle to canvas and allow it to move along with mouse move
         Rectangle paddle = createPaddle();
         canvas.add(paddle);
         canvas.onMouseMove(event -> {
@@ -75,6 +83,7 @@ public class BreakoutGame {
         ball = new Ball(CANVAS_WIDTH * 0.48, CANVAS_HEIGHT * 0.5);
         ball.addToCanvas(canvas);
 
+        //ball added to canvas and canvas pauses for 3 seconds. 
         canvas.draw();
         canvas.pause(3000);
         canvas.animate(() -> {
@@ -97,6 +106,13 @@ public class BreakoutGame {
                 canvas.draw();
             }
         });  
+    }
+
+    @Override
+    public String toString() {
+        return "BreakoutGame [PASTEL_PURPLE=" + PASTEL_PURPLE + ", canvas=" + canvas + ", manager=" + manager
+            + ", ball=" + ball + ", winningText=" + winningText + ", losingText=" + losingText + ", losingText2="
+            + losingText2 + ", lifeCount=" + lifeCount + "]";
     }
 
     public static void main(String[] args){

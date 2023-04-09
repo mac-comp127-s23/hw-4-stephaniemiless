@@ -11,11 +11,13 @@ import java.awt.Color;
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.Rectangle;
 
+/** A single brick used in Breakout. */
 public class Brick {
 
     private Rectangle brick;
     private CanvasWindow canvas;
 
+    /** Creates a brick object using the rectangle graphics object of size 58x20 */
     public Brick(Color color, double xCoor, double yCoor, CanvasWindow canvas) {
         brick = new Rectangle(xCoor, yCoor, 58, 20);
         brick.setFillColor(color);
@@ -34,4 +36,11 @@ public class Brick {
     public void removeFromCanvas() {
         canvas.remove(brick);
     }
+
+    @Override
+    public String toString() {
+        return "Brick [brick=" + brick + ", canvas=" + canvas + "]";
+    }
+
+    
 }

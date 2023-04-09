@@ -15,6 +15,7 @@ import edu.macalester.graphics.GraphicsGroup;
 import edu.macalester.graphics.GraphicsObject;
 import edu.macalester.graphics.Rectangle;
 
+/** The ball used for the Breakout game.*/
 public class Ball extends GraphicsGroup{
 
     public static final double BALL_RADIUS = 10;
@@ -28,6 +29,9 @@ public class Ball extends GraphicsGroup{
     private double bottomRightX, bottomRightY;
     private double dx, dy;
 
+    /** Creates a ball object with center (centerX, centerY) and
+     * pastel purple color
+     */
     public Ball(double centerX, double centerY) {
 
         this.centerX = centerX;
@@ -57,6 +61,7 @@ public class Ball extends GraphicsGroup{
 
     }
 
+    /** Sets the x value of speed to a random double between 1.0 and 4.0 */
     public double setDx() {
         Random random = new Random();
         this.dx = random.nextDouble(1.0, 5.0);
@@ -66,6 +71,13 @@ public class Ball extends GraphicsGroup{
         return this.dx;
     }
 
+    /** Uses the corners of the bounding box of the ball to move around the canvas.
+     * 
+     * @param dt how much you want the ball to move each time animation is called.
+     * @param canvas CanvasWindow object
+     * @param paddle Rectangle object
+     * @param manager BrickManager
+     */
     public void moveBall(double dt, CanvasWindow canvas, Rectangle paddle, BrickManager manager) {
 
         ball.moveBy(dx, dy);
@@ -103,6 +115,9 @@ public class Ball extends GraphicsGroup{
         }
     }
 
+    /** Uses the four corners of the ball to detect and return 
+     * which object it has collided with
+     */
     public GraphicsObject getObjectHit(CanvasWindow canvas) {
         if (canvas.getElementAt(this.bottomLeftX, this.bottomLeftY) != null) {
             return canvas.getElementAt(this.bottomLeftX, this.bottomLeftY);
@@ -124,10 +139,20 @@ public class Ball extends GraphicsGroup{
         canvas.remove(ball);
     }
 
+    /** Puts ball back at its starting position after user loses a life
+     */
     public void resetBall(double x, double y, double dx1, double dy1) {
         ball.setCenter(x, y);
         dx = dx1;
         dy = dy1;
+    }
+
+    @Override
+    public String toString() {
+        return "Ball [PASTEL_PURPLE=" + PASTEL_PURPLE + ", ball=" + ball + ", centerX=" + centerX + ", centerY="
+            + centerY + ", topLeftX=" + topLeftX + ", topLeftY=" + topLeftY + ", topRightX=" + topRightX
+            + ", topRightY=" + topRightY + ", bottomLeftX=" + bottomLeftX + ", bottomLeftY=" + bottomLeftY
+            + ", bottomRightX=" + bottomRightX + ", bottomRightY=" + bottomRightY + ", dx=" + dx + ", dy=" + dy + "]";
     }
 
     public double getBottomLeftY() {

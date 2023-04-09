@@ -9,6 +9,9 @@ package breakout;
 import java.awt.Color;
 import edu.macalester.graphics.CanvasWindow;
 
+/** Manager used to generate bricks into their rows and those rows
+ * onto the canvas.
+ */
 public class BrickManager {
 
     public final Color PASTEL_RED = new Color(255, 154, 162);
@@ -26,6 +29,7 @@ public class BrickManager {
         this.canvas = canvas;
     }
 
+    /** Constructs a single row of bricks with different x coordinates*/
     public void makeBrickRow(double xCoor, double yCoor, Color color) {
         double xCoor1 = xCoor;
         for (int i = 0; i < 10; i++) {
@@ -35,6 +39,7 @@ public class BrickManager {
         }
     }
 
+    /** Constructs all rows of bricks with differing y values and colors. */
     public void generateBricks() {
         makeBrickRow(1, 25, PASTEL_RED);
         makeBrickRow(1, 49, PASTEL_RED);
@@ -50,6 +55,10 @@ public class BrickManager {
         makeBrickRow(1, 289, PASTEL_BLUE);
     }
 
+    /**
+     * 
+     * @return True if brickCount is over 0 and false if brickCount is 0.
+     */
     public boolean bricksStillExist() {
         return brickCount > 0;
     }
@@ -57,4 +66,11 @@ public class BrickManager {
     public void removeBrickFromCount() {
         brickCount -= 1;
     }
+
+    @Override
+    public String toString() {
+        return "BrickManager [PASTEL_RED=" + PASTEL_RED + ", PASTEL_PINK=" + PASTEL_PINK + ", PASTEL_ORANGE="
+            + PASTEL_ORANGE + ", PASTEL_GREEN=" + PASTEL_GREEN + ", PASTEL_AQUA=" + PASTEL_AQUA + ", PASTEL_BLUE="
+            + PASTEL_BLUE + ", brickCount=" + brickCount + ", canvas=" + canvas + ", brick=" + brick + "]";
+    } 
 }
