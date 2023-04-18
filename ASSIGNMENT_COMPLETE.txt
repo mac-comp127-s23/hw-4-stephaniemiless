@@ -1,0 +1,4 @@
+While working on this assignment, I did not look at anybody else's solution. I used the following help and outside resources:
+
+        * Kilt Graphics API
+        * Preceptors during office/lab hours
